@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Car;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -23,12 +24,16 @@ class CarTest extends TestCase
 
     public function testShow()
     {
-        $response = $this->get('/api/car/2');
+        $car = Car::factory()->create([
+            'name' => 'testing'
+        ]);
 
+        $response = $this->get('/api/car/' . $car->id);
+        $response->assertSee('testing');
         $response->assertOk();
     }
 
-    public function testStore()
+    public function testCreate()
     {
         $user = User::factory()->create();
 
@@ -36,6 +41,19 @@ class CarTest extends TestCase
 
         $response = $this->post('/api/car', [
            'name' => $this->faker->name
+        ]);
+
+        $response->assertOk();
+    }
+
+    public function testUpdate()
+    {
+        $user = User::orderByDesc('id')->first();
+
+        $this->actingAs($user);
+
+        $response = $this->post('/api/car', [
+            'name' => 'updated'
         ]);
 
         $response->assertOk();
