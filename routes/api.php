@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::get('/car', [CarController::class, 'index'])->name('car.index');
 Route::get('/car/{car}', [CarController::class, 'show'])->name('car.show');
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::post('/car', [CarController::class, 'createOrUpdate'])->name('car.create-or-update');
     Route::delete('/car/', [CarController::class, 'destroy'])->name('car.destroy');
 });

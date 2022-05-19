@@ -27,11 +27,15 @@ class CarController
 
     public function createOrUpdate(CarRequest $request)
     {
-        app(CarService::class, ['user' => Auth::user()])->createOrUpdate(CarDto::fromRequest($request));
+        $car = app(CarService::class, ['user' => Auth::user()])->createOrUpdate(CarDto::fromRequest($request));
+
+        return new CarResource($car);
     }
 
     public function destroy()
     {
         app(CarService::class, ['user' => Auth::user()])->delete();
+
+        return response()->noContent();
     }
 }

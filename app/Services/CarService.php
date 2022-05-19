@@ -12,9 +12,9 @@ class CarService
     ) {
     }
 
-    public function createOrUpdate(CarDto $dto): void
+    public function createOrUpdate(CarDto $dto)
     {
-        $this->user->car()->updateOrCreate([], $dto->toArray());
+        return $this->user->car()->updateOrCreate([], $dto->toArray());
     }
 
     public function delete(): void
