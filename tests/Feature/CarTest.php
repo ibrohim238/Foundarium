@@ -87,7 +87,7 @@ class CarTest extends TestCase
         ]));
 
         $response->assertStatus(500);
-//        $response->assertOk();
+//        $response->assertRedirect(route('login'));
     }
 
     public function testDestroy()
