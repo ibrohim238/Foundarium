@@ -19,10 +19,10 @@ Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/car', [CarController::class, 'index'])->name('car.index');
-Route::get('/car/{car}', [CarController::class, 'show'])->name('car.show');
+Route::get('/cars', [CarController::class, 'index'])->name('car.index');
+Route::get('/cars/{car}', [CarController::class, 'show'])->name('car.show');
 
 Route::middleware('auth')->group(function () {
-    Route::post('/car', [CarController::class, 'createOrUpdate'])->name('car.create-or-update');
-    Route::delete('/car/', [CarController::class, 'destroy'])->name('car.destroy');
+    Route::post('/cars', [CarController::class, 'createOrUpdate'])->name('car.create-or-update');
+    Route::delete('/cars/', [CarController::class, 'destroy'])->name('car.destroy');
 });

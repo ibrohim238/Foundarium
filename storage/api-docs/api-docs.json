@@ -1,0 +1,109 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Foundation documentation",
+        "description": "Demo Todo List Api",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8035/api",
+            "description": "Laravel swagger API server"
+        }
+    ],
+    "paths": {
+        "/cars": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Car Index Page",
+                "operationId": "carsAll",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "The page count",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "CreateOrUpdate by User",
+                "operationId": "carsCreateOrUpdate",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Delete example by User",
+                "operationId": "CarsDelete",
+                "responses": {
+                    "204": {
+                        "description": "Deleted"
+                    }
+                }
+            }
+        },
+        "/cars/{id}": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Get example by ID",
+                "operationId": "CarsGet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of example",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Cars",
+            "description": "Car Pages"
+        }
+    ]
+}
