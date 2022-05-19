@@ -11,11 +11,7 @@ use Tests\TestCase;
 class CarTest extends TestCase
 {
     use WithFaker;
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+
     public function testIndex()
     {
         $response = $this->get(route('car.index'));
