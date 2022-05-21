@@ -3,22 +3,46 @@
 namespace App\Services;
 
 use App\Dto\CarDto;
+use App\Models\Car;
 use App\Models\User;
 
 class CarService
 {
     public function __construct(
-      public User $user
+      public Car $car
     ) {
     }
 
-    public function createOrUpdate(CarDto $dto)
+    public function create(CarDto $dto): Car
     {
-        return $this->user->car()->updateOrCreate([], $dto->toArray());
+        $this->fill($dto)->save();
+
+        return $this->car;
+    }
+
+    public function update(CarDto $dto): Car
+    {
+        $this->fill($dto)->save();
+
+        return $this->car;
+    }
+
+    public function fill(CarDto $dto): static
+    {
+        $this->car->fill($dto->toArray());
+
+        return $this;
+    }
+
+    public function save(): static
+    {
+        $this->car->save();
+
+        return $this;
     }
 
     public function delete(): void
     {
-        $this->user->car()->delete();
+        $this->car->delete();
     }
 }

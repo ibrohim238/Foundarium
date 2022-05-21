@@ -19,6 +19,10 @@ use Illuminate\Routing\Controller as BaseController;
  *      name="Cars",
  *      description="Car Pages",
  * )
+ * @OA\Tag(
+ *      name="Users",
+ *      description="User Pages",
+ * )
  * @OA\Server(
  *     description="Laravel swagger API server",
  *     url="http://localhost:8035/api",

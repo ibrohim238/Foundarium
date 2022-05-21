@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\PickCarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,10 +20,6 @@ Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/cars', [CarController::class, 'index'])->name('car.index');
-Route::get('/cars/{car}', [CarController::class, 'show'])->name('car.show');
+Route::apiResource('cars', CarController::class);
 
-Route::middleware('auth')->group(function () {
-    Route::post('/cars', [CarController::class, 'createOrUpdate'])->name('car.create-or-update');
-    Route::delete('/cars/', [CarController::class, 'destroy'])->name('car.destroy');
-});
+Route::patch('/user/{user}/car-pick/{car}', PickCarController::class)->name('car-pick');

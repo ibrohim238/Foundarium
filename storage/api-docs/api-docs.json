@@ -49,11 +49,34 @@
                 "tags": [
                     "Cars"
                 ],
-                "summary": "CreateOrUpdate by User",
-                "operationId": "carsCreateOrUpdate",
-                "requestBody": {
-                    "required": true
-                },
+                "summary": "Create yet another Car record",
+                "operationId": "carCreate",
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    }
+                }
+            }
+        },
+        "/cars/{id}": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Get car by ID",
+                "operationId": "CarsGet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The ID of example",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Everything is fine"
@@ -64,27 +87,61 @@
                 "tags": [
                     "Cars"
                 ],
-                "summary": "Delete example by User",
-                "operationId": "CarsDelete",
-                "responses": {
-                    "204": {
-                        "description": "Deleted"
-                    }
-                }
-            }
-        },
-        "/cars/{id}": {
-            "get": {
-                "tags": [
-                    "Cars"
-                ],
-                "summary": "Get example by ID",
-                "operationId": "CarsGet",
+                "summary": "Delete car by Id",
+                "operationId": "CarDelete",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
                         "description": "The ID of example",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Update car by ID",
+                "operationId": "carUpdate",
+                "responses": {
+                    "200": {
+                        "description": "Everything is fine"
+                    }
+                }
+            }
+        },
+        "/user/{user}/car-pick/{car}": {
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Pick car for user by ID",
+                "operationId": "pickCar",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "The ID of User",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "car",
+                        "in": "path",
+                        "description": "The ID of Car",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -104,6 +161,10 @@
         {
             "name": "Cars",
             "description": "Car Pages"
+        },
+        {
+            "name": "Users",
+            "description": "User Pages"
         }
     ]
 }
