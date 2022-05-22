@@ -25,7 +25,7 @@ use Illuminate\Routing\Controller as BaseController;
  * )
  * @OA\Server(
  *     description="Laravel swagger API server",
- *     url="http://localhost:8035/api",
+ *     url="http://localhost:8036/api",
  * )
  */
 class Controller extends BaseController

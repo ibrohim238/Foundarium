@@ -1,7 +1,7 @@
 ## Installation
 
 I assume you have `docker-compose` installed and either **docker-engine** running locally (Linux) or have **docker-machine** (installed via [docker-toolbox](https://www.docker.com/products/docker-toolbox) on OSX, Windows)
-configured on the computer you use. _NOTE: if you use docker-machine (deprecated project so recommend not to) you may need to use the docker-machine IP address instead of `localhost` URLs mentioned below_
+configured on the computer you use. _NOTE: if you use docker-machine (deprecated project so recommend not to) you may need to use the docker-machine IP address instead of `localhost:8036` URLs mentioned below_
 
 1. Retrieve git project
 
