@@ -13,15 +13,13 @@ class UserService
     ) {
     }
 
-    public function pickCar(Car $car): User
+    public function pickCar(Car $car): void
     {
-        if(! User::where('car_id', $car->id)->exists()) {
-            $this->associateCar($car)->save();
-        } else {
+        if(User::where('car_id', $car->id)->exists()) {
             throw UserException::carBusy();
         }
 
-        return $this->user;
+        $this->associateCar($car)->save();
     }
 
     public function associateCar(Car $car): static
