@@ -1,10 +1,11 @@
 <?php
 
-namespace Tests\Feature;
+namespace Http\Controllers;
 
 use App\Models\Car;
 use App\Models\User;
 use Tests\TestCase;
+use function route;
 
 class PickCarTest extends TestCase
 {
@@ -14,8 +15,7 @@ class PickCarTest extends TestCase
 
         $car = Car::factory()->create();
 
-        $response = $this->actingAs($user)->patch(route('car-pick', $car));
-
+        $response = $this->actingAs($user)->patch(route('car-pick', [$user, $car]));
 
         $response->assertOk();
     }

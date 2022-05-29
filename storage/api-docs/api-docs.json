@@ -1,29 +1,30 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Foundation documentation",
-        "description": "Demo Todo List Api",
+        "title": "Foundarium documentation",
+        "description": "V1 Api docs",
+        "contact": {
+            "email": "ibrohim238@mail.ru"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
         "version": "1.0.0"
     },
-    "servers": [
-        {
-            "url": "http://localhost:8036/api",
-            "description": "Laravel swagger API server"
-        }
-    ],
     "paths": {
-        "/cars": {
+        "/api/cars": {
             "get": {
                 "tags": [
                     "Cars"
                 ],
-                "summary": "Car Index Page",
-                "operationId": "carsAll",
+                "summary": "Список машин",
+                "description": "Список машин",
+                "operationId": "4e913ee0b6125f5ad41f32df1df5b8a4",
                 "parameters": [
                     {
                         "name": "page",
-                        "in": "query",
-                        "description": "The page number",
+                        "in": "path",
                         "required": false,
                         "schema": {
                             "type": "integer"
@@ -31,8 +32,7 @@
                     },
                     {
                         "name": "count",
-                        "in": "query",
-                        "description": "The page count",
+                        "in": "path",
                         "required": false,
                         "schema": {
                             "type": "integer"
@@ -41,7 +41,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Everything is fine"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CarResource"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -49,37 +56,84 @@
                 "tags": [
                     "Cars"
                 ],
-                "summary": "Create yet another Car record",
-                "operationId": "carCreate",
+                "summary": "Добавить машин",
+                "description": "Добавить машин",
+                "operationId": "c7dc83eef94f2e2a9c294d740d2cf326",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CarRequest"
+                            }
+                        }
+                    }
+                },
                 "responses": {
-                    "200": {
-                        "description": "Everything is fine"
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Car"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable entity.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
-        "/cars/{id}": {
+        "/api/cars/{id}": {
             "get": {
                 "tags": [
                     "Cars"
                 ],
-                "summary": "Get car by ID",
-                "operationId": "CarsGet",
+                "summary": "Страница машины",
+                "description": "Страница машины",
+                "operationId": "7e34f7dbe6a73a5a72eb92bc36a94af9",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "The ID of example",
                         "required": true,
                         "schema": {
                             "type": "integer"
                         },
-                        "example": "1"
+                        "example": 1
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Everything is fine"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Car"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found."
                     }
                 }
             },
@@ -87,23 +141,30 @@
                 "tags": [
                     "Cars"
                 ],
-                "summary": "Delete car by Id",
-                "operationId": "CarDelete",
+                "summary": "Удаление машины",
+                "description": "Удаление машины",
+                "operationId": "75e30982110a5b0506c52b55cd0f15f8",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "The ID of example",
                         "required": true,
                         "schema": {
                             "type": "integer"
-                        },
-                        "example": "1"
+                        }
                     }
                 ],
                 "responses": {
                     "204": {
-                        "description": "Deleted"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found."
                     }
                 }
             },
@@ -111,11 +172,62 @@
                 "tags": [
                     "Cars"
                 ],
-                "summary": "Update car by ID",
-                "operationId": "carUpdate",
+                "summary": "Обновление машины",
+                "description": "Обновление машины",
+                "operationId": "9a9004b41d2575addc0da59743a5e751",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CarRequest"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
-                        "description": "Everything is fine"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Car"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found."
+                    },
+                    "422": {
+                        "description": "Unprocessable entity.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -125,34 +237,148 @@
                 "tags": [
                     "Users"
                 ],
-                "summary": "Pick car for user by ID",
-                "operationId": "pickCar",
+                "summary": "Выбор машины",
+                "description": "Выбор машины",
+                "operationId": "1be6ffbc07fd96fe498a906479bd6d03",
                 "parameters": [
                     {
                         "name": "user",
                         "in": "path",
-                        "description": "The ID of User",
                         "required": true,
                         "schema": {
                             "type": "integer"
                         },
-                        "example": "1"
+                        "example": 1
                     },
                     {
                         "name": "car",
                         "in": "path",
-                        "description": "The ID of Car",
                         "required": true,
                         "schema": {
                             "type": "integer"
                         },
-                        "example": "1"
+                        "example": 1
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Everything is fine"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found."
                     }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Car": {
+                "title": "Notebook",
+                "description": "Notebook model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Название",
+                        "type": "string",
+                        "example": "Rachelle Homenick"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Notebook"
+                }
+            },
+            "User": {
+                "title": "User",
+                "description": "User model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Название",
+                        "type": "string",
+                        "example": "Rachelle Homenick"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "Почта",
+                        "type": "string",
+                        "example": "example@hotmail.com"
+                    },
+                    "car_id": {
+                        "title": "car_id",
+                        "description": "Car id",
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "user"
+                }
+            },
+            "CarRequest": {
+                "title": "Car request",
+                "description": "Car request body data",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "name of the new Car",
+                        "type": "string",
+                        "example": "A nice Car"
+                    }
+                },
+                "type": "object"
+            },
+            "CarResource": {
+                "title": "CarResource",
+                "description": "Car resource",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/Car"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "CarResource"
                 }
             }
         }
@@ -160,11 +386,7 @@
     "tags": [
         {
             "name": "Cars",
-            "description": "Car Pages"
-        },
-        {
-            "name": "Users",
-            "description": "User Pages"
+            "description": "Машины"
         }
     ]
 }
