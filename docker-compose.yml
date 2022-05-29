@@ -1,10 +1,9 @@
 version: '3'
 services:
   nginx:
-    container_name: nginx
     image: nginx:latest
     ports:
-      - "${APP_PORT:-8035}:80"
+      - "${APP_PORT:-8036}:80"
     volumes:
       - .:/src
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
@@ -12,7 +11,6 @@ services:
       - app
       - db
   app:
-    container_name: app
     build:
       context: .
       dockerfile: docker/php-fpm/Dockerfile
@@ -22,11 +20,10 @@ services:
     depends_on:
       - db
   db:
-    container_name: db
     platform: linux/x86_64
     image: mysql:8.0
     ports:
-      - "33070:3306"
+      - "33071:3306"
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/conf.d:/etc/mysql/conf.d

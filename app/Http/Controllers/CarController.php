@@ -83,9 +83,19 @@ class CarController
      *     operationId="carsCreateOrUpdate",
      *     tags={"Cars"},
      *     summary="CreateOrUpdate by User",
+     *     @OA\RequestBody(
+     *       required=true,
+     *       @OA\JsonContent(ref="#/components/schemas/CarRequest")
+     *     ),
+     *     @OA\Response(
+     *         response="201",
+     *         description="Everything is fine",
+     *         @OA\JsonContent(ref="#/components/schemas/Car")
+     *     ),
      *     @OA\Response(
      *         response="200",
      *         description="Everything is fine",
+     *         @OA\JsonContent(ref="#/components/schemas/Car")
      *     ),
      * )
      */

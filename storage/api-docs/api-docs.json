@@ -52,11 +52,35 @@
                 "summary": "CreateOrUpdate by User",
                 "operationId": "carsCreateOrUpdate",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CarRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
+                    "201": {
+                        "description": "Everything is fine",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Car"
+                                }
+                            }
+                        }
+                    },
                     "200": {
-                        "description": "Everything is fine"
+                        "description": "Everything is fine",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Car"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -96,6 +120,82 @@
                     "200": {
                         "description": "Everything is fine"
                     }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Car": {
+                "title": "Notebook",
+                "description": "Notebook model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Название",
+                        "type": "string",
+                        "example": "Rachelle Homenick"
+                    },
+                    "user_id": {
+                        "title": "car_id",
+                        "description": "Car id",
+                        "type": "string",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Notebook"
+                }
+            },
+            "CarRequest": {
+                "title": "Car request",
+                "description": "Car request body data",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "name of the new Car",
+                        "type": "string",
+                        "example": "A nice Car"
+                    }
+                },
+                "type": "object"
+            },
+            "CarResource": {
+                "title": "CarResource",
+                "description": "Car resource",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/Car"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "CarResource"
                 }
             }
         }
